@@ -1,26 +1,43 @@
-const sounds =
-    ['applause', 'boo',
-        'gasp', 'tada', 'victory', 'wrong']
+const jokeEl = document.getElementById('joke')
+const jokeBtn = document.getElementById('jokeBtn')
+
+jokeBtn.addEventListener('click', generateJoke)
+
+generateJoke()
 
 
-sounds.forEach(sound => {
-    const btn = document.createElement('button')
-    btn.classList.add('btn')
-    btn.innerText = sound
+//USING .Then()
 
-    btn.addEventListener('click', () => {
+// function generateJoke() {
+//     const config = {
+//         headers: {
+//             "Accept": "application/json"
+//         }
 
-        stopSongs()
-        document.getElementById(sound).play()
-    })
+//     }
 
-    document.getElementById('buttons').appendChild(btn)
-})
+//     fetch('https://icanhazdadjoke.com', config)
+//         .then(res => res.json())
+//         .then((data) => {
+//             jokeEl.innerHTML = data.joke
+//         })
 
-function stopSongs() {
-    sounds.forEach(sound => {
-        const song = document.getElementById(sound)
-        song.pause()
-        song.currentTime = 0;
-    })
+
+
+// }
+
+
+// USING ASYNC AWAIT
+
+async function generateJoke() {
+    const config = {
+        headers: {
+            "Accept": "application/json"
+        }
+
+    }
+
+    const res = await fetch('https://icanhazdadjoke.com', config)
+    const data = await res.json()
+    jokeEl.innerHTML = data.joke
 }
