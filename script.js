@@ -1,19 +1,8 @@
-const insert = document.getElementById('insert')
+const toggle = document.querySelectorAll('.faq-toggle')
 
 
-window.addEventListener('keydown', (event) => {
-    insert.innerHTML = `
-     <div class="key">
-            ${event.key === ' ' ? 'Space' : event.key}
-            <small>event.key</small>
-        </div>
-        <div class="key">
-            ${event.keyCode}
-            <small>event.keyCode</small>
-        </div>
-        <div class="key">
-            KeyA${event.code}
-            <small>event.code</small>
-        </div>
-    `
+toggle.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        toggle.parentNode.classList.toggle('active')
+    })
 })
